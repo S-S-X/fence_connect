@@ -7,12 +7,6 @@
 #
 ]]--
 
-local inject_group = function(node, group)
-	local groups = table.copy(node.groups)
-	groups[group] = 321
-	minetest.override_item(node.name, { groups=groups })
-end
-
 local fences = {
 	{'default', 'fence_wood'},
 	{'default', 'fence_acacia_wood'},
