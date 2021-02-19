@@ -43,11 +43,4 @@ jobs:
             ```
             ${{ steps.mineunit.outputs.busted-stdout }}
             ```
-            It seems that your project is missing spec files, you should add spec files inside spec directory.
-            If you already have spec directory with `*_spec.lua` files then probelm is probably `working-directory` settings.
-            `working-directory` should point to directory where `spec` directory is located. Example when you have `/src/mystuff/spec` directory:
-            ```
-            - uses: mt-mods/mineunit-actions@master
-              with:
-                working-directory: ./src/mystuff
-            ```
+            ${{ steps.mineunit.outputs.help-busted-spec-missing }}
