@@ -25,5 +25,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Mineunit runner
+      - id: mineunit
         uses: mt-mods/mineunit-actions@v0.1
+      - if: ${{ failure() }}
+        uses: peter-evans/commit-comment@v1.3.2
+        with:
+          body: "${{ steps.mineunit.outputs.busted-stdout }}"
