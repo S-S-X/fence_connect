@@ -27,7 +27,27 @@ jobs:
 
       - id: mineunit
         uses: mt-mods/mineunit-actions@master
-      - if: ${{ failure() }}
+      - if: failure() && ! steps.mineunit.outputs.busted-missing-spec
         uses: peter-evans/commit-comment@v1.3.2
         with:
-          body: "Busted-stdout: ${{ steps.mineunit.outputs.busted-stdout }}"
+          body: |
+            Mineunit failed regression tests, complete test log produced by `busted` follows:
+            ```
+            ${{ steps.mineunit.outputs.busted-stdout }}
+            ```
+      - if: failure() && steps.mineunit.outputs.busted-missing-spec
+        uses: peter-evans/commit-comment@v1.3.2
+        with:
+          body: |
+            Busted failed, log follows:
+            ```
+            ${{ steps.mineunit.outputs.busted-stdout }}
+            ```
+            It seems that your project is missing spec files, you should add spec files inside spec directory.
+            If you already have spec directory with `*_spec.lua` files then probelm is probably `working-directory` settings.
+            `working-directory` should point to directory where `spec` directory is located. Example when you have `/src/mystuff/spec` directory:
+            ```
+            - uses: mt-mods/mineunit-actions@master
+              with:
+                working-directory: ./src/mystuff
+            ```
