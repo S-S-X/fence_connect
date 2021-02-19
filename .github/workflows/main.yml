@@ -30,4 +30,4 @@ jobs:
       - if: ${{ failure() }}
         uses: peter-evans/commit-comment@v1.3.2
         with:
-          body: "${{ steps.mineunit.outputs.busted-stdout }}"
+          body: "Busted-stdout: ${{ steps.mineunit.outputs.busted-stdout }}"
