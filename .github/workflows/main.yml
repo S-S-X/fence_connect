@@ -27,20 +27,32 @@ jobs:
 
       - id: mineunit
         uses: mt-mods/mineunit-actions@master
-      - if: failure() && ! steps.mineunit.outputs.busted-spec-missing
+      - if: success()
+        uses: peter-evans/commit-comment@v1.3.2
+        with:
+          body: |
+            Detailed test coverage report:
+            ```
+            ${{ steps.mineunit.outputs.mineunit-report }}
+            ```
+            Mineunit test runner log:
+            ```
+            ${{ steps.mineunit.outputs.mineunit-stdout }}
+            ```
+      - if: failure() && ! steps.mineunit.outputs.mineunit-spec-missing
         uses: peter-evans/commit-comment@v1.3.2
         with:
           body: |
             Mineunit failed regression tests, complete test log produced by `busted` follows:
             ```
-            ${{ steps.mineunit.outputs.busted-stdout }}
+            ${{ steps.mineunit.outputs.mineunit-stdout }}
             ```
-      - if: failure() && steps.mineunit.outputs.busted-spec-missing
+      - if: failure() && steps.mineunit.outputs.mineunit-spec-missing
         uses: peter-evans/commit-comment@v1.3.2
         with:
           body: |
             Busted failed, log follows:
             ```
-            ${{ steps.mineunit.outputs.busted-stdout }}
+            ${{ steps.mineunit.outputs.mineunit-stdout }}
             ```
             ${{ steps.mineunit.outputs.help-busted-spec-missing }}
