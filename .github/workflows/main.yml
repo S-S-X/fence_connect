@@ -34,7 +34,9 @@ jobs:
           comment: |
             Detailed test coverage report:
             ```
-            ${{ steps.mineunit.outputs.mineunit-report }}
+            File                             Hits Missed Coverage
+            -----------------------------------------------------
+            ${{ steps.mineunit-sharetool.outputs.mineunit-report }}
             ```
             Mineunit test runner log:
             ```
