@@ -28,9 +28,10 @@ jobs:
       - id: mineunit
         uses: mt-mods/mineunit-actions@master
       - if: success()
-        uses: peter-evans/commit-comment@v1.3.2
+        uses: KeisukeYamashita/create-comment@v1
         with:
-          body: |
+          check-only-first-line: true
+          comment: |
             Detailed test coverage report:
             ```
             ${{ steps.mineunit.outputs.mineunit-report }}
