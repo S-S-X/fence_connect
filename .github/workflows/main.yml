@@ -19,7 +19,7 @@ jobs:
 
       - id: mineunit
         uses: mt-mods/mineunit-actions@master
-      - if: success()
+      - if: success() && github.event_name == 'pull_request'
         uses: KeisukeYamashita/create-comment@v1
         with:
           check-only-first-line: true
