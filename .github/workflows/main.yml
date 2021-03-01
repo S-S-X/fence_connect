@@ -25,6 +25,7 @@ jobs:
           check-only-first-line: true
           comment: |
             Detailed test coverage report:
+            ![coverage](${{ steps.mineunit.outputs.badge-url }})
             ```
             File                             Hits Missed Coverage
             -----------------------------------------------------
