@@ -1,3 +1,5 @@
+local S = string.format
+
 --
 -- Fence registration helper
 --
@@ -62,7 +64,7 @@ function default.register_fence(name, def)
 	def.texture = nil
 	def.material = nil
 
-	minetest.register_node(name, def)
+	minetest.register_node(":"..name, def)
 end
 
 default.register_fence("default:fence_wood", {
