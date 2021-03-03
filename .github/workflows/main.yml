@@ -21,6 +21,7 @@ jobs:
         uses: mt-mods/mineunit-actions@badger
         with:
           badge-secret: ${{ secrets.MINEUNIT_BADGES_KEY }}
+          badge-color: D0F055
       - if: success() && github.event_name == 'pull_request'
         uses: KeisukeYamashita/create-comment@v1
         with:
