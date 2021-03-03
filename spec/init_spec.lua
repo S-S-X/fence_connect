@@ -2,6 +2,8 @@ require("mineunit")
 
 mineunit("core")
 
+fixture("fences")
+
 minetest.register_node(":technic:test_chest", {
 	description = "Technic chest",
 	groups = {
